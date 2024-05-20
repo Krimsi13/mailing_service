@@ -1,0 +1,37 @@
+{% extends "mailings/base.html" %}
+{% block content %}
+<div class="ricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="center">
+        Список имеющихся рассылок
+    </h1>
+    <div class="row text-center">
+        {% for object in object_list %}
+        <div class="col-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <h6>Дата первой рассылки: {{ object.date_time }}</h6>
+                    <p class="card-text">{{ object.periodicity }}</p>
+                    <p class="card-text">{{ object.status }}</p>
+
+                    <div class="btn-group">
+                        <a type="button" class="btn btn-sm btn-outline-success"
+                           href="{% url 'mailings:settings_detail' object.pk %}">Просмотр</a>
+                        <a type="button" class="btn btn-sm btn-outline-warning"
+                           href="{% url 'mailings:settings_update' object.pk %}">Редактирование</a>
+                        <a type="button" class="btn btn-sm btn-outline-danger"
+                           href="{% url 'mailings:settings_delete' object.pk %}">Удаление</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div style="text-align: center">
+    <a class="btn btn-outline-primary" href="{% url 'mailings:settings_create' %}">Создать рассылку</a>
+</div>
+{% endblock %}
