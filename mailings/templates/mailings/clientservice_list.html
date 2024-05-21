@@ -9,10 +9,11 @@
         <div class="col-4">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{ object.email }}</h4>
+                    <h4 class="my-0 font-weight-normal">{{ object.pk }}</h4>
                 </div>
                 <div class="card-body">
-                    <h6>{{ object.name }}</h6>
+                    <h6>{{ object.email }}</h6>
+                    <p class="card-text">{{ object.name }}</p>
                     {% if object.patronymic %}
                     <p class="card-text">{{ object.patronymic }}</p>
                     {% endif %}
