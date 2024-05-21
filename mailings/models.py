@@ -36,21 +36,21 @@ class MessageLetter(models.Model):
 class MailingSettings(models.Model):
 
     FREQUENCY_CHOICES = [
-        ('once_a_day', 'Once a Day'),
-        ('once_a_week', 'Once a Week'),
-        ('once_a_month', 'Once a Month'),
+        ('Раз в день', 'Once a Day'),
+        ('Раз в неделю', 'Once a Week'),
+        ('Раз в месяц', 'Once a Month'),
     ]
 
     STATUS_CHOICES = [
-        ('completed', 'Completed'),
-        ('created', 'Created'),
-        ('started', 'Started'),
+        ('Завершена', 'Completed'),
+        ('Создана', 'Created'),
+        ('Запущена', 'Started'),
     ]
 
     date_time = models.DateTimeField(verbose_name="Время рассылки", auto_now_add=True)
     periodicity = models.CharField(verbose_name="Периодичность", max_length=20, choices=FREQUENCY_CHOICES,
-                                   default='once_a_day')
-    status = models.CharField(verbose_name="Статус рассылки", max_length=20, choices=STATUS_CHOICES, default='created')
+                                   default='Раз в день')
+    status = models.CharField(verbose_name="Статус рассылки", max_length=20, choices=STATUS_CHOICES, default='Создана')
 
     clients = models.ManyToManyField(ClientService, verbose_name="Клиент")
     message = models.ForeignKey(MessageLetter, on_delete=models.CASCADE, verbose_name='Сообщение')

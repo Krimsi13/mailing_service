@@ -9,11 +9,14 @@
         <div class="col-4">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
+                    <h4 class="my-0 font-weight-normal">{{ object.pk }}</h4>
                 </div>
                 <div class="card-body">
-                    <h6>Дата первой рассылки: {{ object.date_time }}</h6>
+                    <h6>Дата первой рассылки:</h6>
+                    <p>{{ object.date_time }}</p>
+                    <h6>Периодичность:</h6>
                     <p class="card-text">{{ object.periodicity }}</p>
+                    <h6>Статус:</h6>
                     <p class="card-text">{{ object.status }}</p>
 
                     <div class="btn-group">

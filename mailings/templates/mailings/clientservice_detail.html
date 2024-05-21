@@ -1,0 +1,41 @@
+{% extends "mailings/base.html" %}
+{% block content %}
+<div class="col-12">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h3 class="display-3">Клиент № {{ object.pk }}</h3>
+    </div>
+</div>
+
+<div class="col-12 text-center">
+    <table class="table table-striped">
+        <tr>
+            <th><h4>Имя</h4></th>
+            {% if object.patronymic %}
+            <th><h4>Отчество</h4></th>
+            {% endif %}
+            <th><h4>Фамилия</h4></th>
+            <th><h4>Почта</h4></th>
+            {% if object.comment %}
+            <th><h4>Комментарий</h4></th>
+            {% endif %}
+
+        </tr>
+        <tr>
+            <td>{{ object.name }}</td>
+            {% if object.patronymic %}
+            <td>{{ object.patronymic }}</td>
+            {% endif %}
+            <td>{{ object.surname }}</td>
+            <td>{{ object.email }}</td>
+            {% if object.comment %}
+            <td>{{ object.comment }}</td>
+            {% endif %}
+
+        </tr>
+    </table>
+    <div class="center">
+        <a class="btn btn-outline-primary btn-lg" href="{% url 'mailings:clients' %}">Вернуться
+            к списку клиентов</a>
+    </div>
+</div>
+{% endblock %}

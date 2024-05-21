@@ -1,0 +1,43 @@
+{% extends "mailings/base.html" %}
+{% block content %}
+<div class="ricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="center">
+        Список имеющихся клиентов
+    </h1>
+    <div class="row text-center">
+        {% for object in object_list %}
+        <div class="col-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ object.email }}</h4>
+                </div>
+                <div class="card-body">
+                    <h6>{{ object.name }}</h6>
+                    {% if object.patronymic %}
+                    <p class="card-text">{{ object.patronymic }}</p>
+                    {% endif %}
+                    <p class="card-text">{{ object.surname }}</p>
+                    {% if object.comment %}
+                    <p class="card-text">{{ object.comment }}</p>
+                    {% endif %}
+
+
+                    <div class="btn-group">
+                        <a type="button" class="btn btn-sm btn-outline-success"
+                           href="{% url 'mailings:clients_detail' object.pk %}">Просмотр</a>
+                        <a type="button" class="btn btn-sm btn-outline-warning"
+                           href="{% url 'mailings:clients_update' object.pk %}">Редактирование</a>
+                        <a type="button" class="btn btn-sm btn-outline-danger"
+                           href="{% url 'mailings:clients_delete' object.pk %}">Удаление</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div style="text-align: center">
+    <a class="btn btn-outline-primary" href="{% url 'mailings:clients_create' %}">Добавить клиента</a>
+</div>
+{% endblock %}
