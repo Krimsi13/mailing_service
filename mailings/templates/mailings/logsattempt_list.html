@@ -1,0 +1,37 @@
+{% extends "mailings/base.html" %}
+{% block content %}
+<div class="col-12">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h3 class="display-3">Журнал рассылок</h3>
+    </div>
+</div>
+
+<div class="col-12 text-center">
+    <table class="table">
+        <thead>
+        <tr>
+            <th><h5>№</h5></th>
+            <th><h5>Название рассылки</h5></th>
+            <th><h5>Дата и время последней попытки</h5></th>
+            <th><h5>Статус</h5></th>
+            <th><h5>Ответ сервера</h5></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in object_list %}
+        <tr>
+            <td>{{ object.pk }}</td>
+            <td>{{ object.mailing_settings.message.title }}</td>
+            <td>{{ object.last_attempt }}</td>
+            <td>{{ object.status }}</td>
+            {% if object.response_mail %}
+            <td>{{ object.response_mail }}</td>
+            {% else %}
+            <td> - </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
