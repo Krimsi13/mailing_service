@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'mailings',
+    'users',
     'django_apscheduler',
 ]
 
@@ -140,3 +141,7 @@ EMAIL_USE_SSL = True
 
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+AUTH_USER_MODEL = "users.User"
+LOGIN_REDIRECT_URL = "/"  # URL to redirect to after login
+LOGOUT_REDIRECT_URL = "/"  # URL to redirect to after logout
