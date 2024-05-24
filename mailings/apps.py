@@ -8,7 +8,7 @@ class MailingsConfig(AppConfig):
     name = 'mailings'
     verbose_name = 'Рассылка'
 
-    def ready(self):
-        from mailings.scheduler import start
-        time.sleep(2)
-        start()
+    # def ready(self):
+    #     from mailings.scheduler import start
+    #     time.sleep(2)
+    #     start()

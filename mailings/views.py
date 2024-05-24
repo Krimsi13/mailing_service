@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
+from mailings.forms import MailingSettingsForm, ClientServiceForm, MessageLetterForm
 from mailings.models import MailingSettings, ClientService, MessageLetter, LogsAttempt
 
 
@@ -15,14 +16,15 @@ class MailingSettingsDetailView(DetailView):
 
 class MailingSettingsCreateView(CreateView):
     model = MailingSettings
-    fields = '__all__'
-    # form_class = MailingSettingsForm
+    # fields = '__all__'
+    form_class = MailingSettingsForm
     success_url = reverse_lazy("mailings:settings")
 
 
 class MailingSettingsUpdateView(UpdateView):
     model = MailingSettings
-    fields = '__all__'
+    form_class = MailingSettingsForm
+    # fields = '__all__'
     success_url = reverse_lazy("mailings:settings")
 
 
@@ -41,14 +43,15 @@ class ClientServiceDetailView(DetailView):
 
 class ClientServiceCreateView(CreateView):
     model = ClientService
-    fields = '__all__'
-    # form_class = ClientServiceForm
+    # fields = '__all__'
+    form_class = ClientServiceForm
     success_url = reverse_lazy("mailings:clients")
 
 
 class ClientServiceUpdateView(UpdateView):
     model = ClientService
-    fields = '__all__'
+    form_class = ClientServiceForm
+    # fields = '__all__'
     success_url = reverse_lazy("mailings:clients")
 
 
@@ -67,14 +70,15 @@ class MessageLetterDetailView(DetailView):
 
 class MessageLetterCreateView(CreateView):
     model = MessageLetter
-    fields = '__all__'
-    # form_class = MessageLetterForm
+    # fields = '__all__'
+    form_class = MessageLetterForm
     success_url = reverse_lazy("mailings:messages")
 
 
 class MessageLetterUpdateView(UpdateView):
     model = MessageLetter
-    fields = '__all__'
+    form_class = MessageLetterForm
+    # fields = '__all__'
     success_url = reverse_lazy("mailings:messages")
 
 
