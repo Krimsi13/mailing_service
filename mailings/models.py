@@ -66,7 +66,7 @@ class MailingSettings(models.Model):
 
 class LogsAttempt(models.Model):
     last_attempt = models.DateField(verbose_name="Дата и время последней попытки", auto_now_add=True)
-    status = models.CharField(max_length=200, verbose_name="Статус попытки", default='completed')
+    status = models.CharField(max_length=200, verbose_name="Статус попытки", default='Отправлено')
     response_mail = models.CharField(max_length=200, verbose_name="Ответ почтового сервера", **NULLABLE)
 
     mailing_settings = models.ForeignKey(MailingSettings, on_delete=models.SET_NULL, **NULLABLE)
