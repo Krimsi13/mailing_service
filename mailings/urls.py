@@ -10,7 +10,7 @@ from mailings.views import MailingSettingsListView, MailingSettingsDetailView, M
 app_name = MailingsConfig.name
 
 urlpatterns = [
-    # path('', ListView.as_view(), name='_list'),
+    # path('', main_page, name='index'),
 
     path("settings/", MailingSettingsListView.as_view(), name="settings"),
     path("settings/<int:pk>/", MailingSettingsDetailView.as_view(), name="settings_detail"),
