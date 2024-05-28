@@ -15,14 +15,18 @@
                     <h6>{{ object.title }}</h6>
                     <p class="card-text">{{ object.body }}</p>
 
+                    {% if user.is_authenticated %}
                     <div class="btn-group">
                         <a type="button" class="btn btn-sm btn-outline-success"
                            href="{% url 'mailings:messages_detail' object.pk %}">Просмотр</a>
+                        {% if user.is_superuser or user == object.owner %}
                         <a type="button" class="btn btn-sm btn-outline-warning"
                            href="{% url 'mailings:messages_update' object.pk %}">Редактирование</a>
                         <a type="button" class="btn btn-sm btn-outline-danger"
                            href="{% url 'mailings:messages_delete' object.pk %}">Удаление</a>
+                        {% endif %}
                     </div>
+                    {% endif %}
 
                 </div>
             </div>
@@ -30,7 +34,10 @@
         {% endfor %}
     </div>
 </div>
+{% if user.is_authenticated %}
 <div style="text-align: center">
     <a class="btn btn-outline-primary" href="{% url 'mailings:messages_create' %}">Добавить сообщение</a>
 </div>
+{% endif %}
+
 {% endblock %}

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
@@ -10,11 +11,11 @@ class MailingSettingsListView(ListView):
     model = MailingSettings
 
 
-class MailingSettingsDetailView(DetailView):
+class MailingSettingsDetailView(LoginRequiredMixin, DetailView):
     model = MailingSettings
 
 
-class MailingSettingsCreateView(CreateView):
+class MailingSettingsCreateView(LoginRequiredMixin, CreateView):
     model = MailingSettings
     # fields = '__all__'
     form_class = MailingSettingsForm
@@ -27,15 +28,20 @@ class MailingSettingsCreateView(CreateView):
         mailing_settings.save()
         return super().form_valid(form)
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'request': self.request})
+        return kwargs
 
-class MailingSettingsUpdateView(UpdateView):
+
+class MailingSettingsUpdateView(LoginRequiredMixin, UpdateView):
     model = MailingSettings
     form_class = MailingSettingsForm
     # fields = '__all__'
     success_url = reverse_lazy("mailings:settings")
 
 
-class MailingSettingsDeleteView(DeleteView):
+class MailingSettingsDeleteView(LoginRequiredMixin, DeleteView):
     model = MailingSettings
     success_url = reverse_lazy("mailings:settings")
 
@@ -43,8 +49,15 @@ class MailingSettingsDeleteView(DeleteView):
 class ClientServiceListView(ListView):
     model = ClientService
 
+    # на вкладке клиенты отображаются клиенты только пользователя(пока выключил)
+    # def get_queryset(self):
+    #     if self.request.user.is_superuser:
+    #         return ClientService.objects.all()
+    #     else:
+    #         return ClientService.objects.filter(owner=self.request.user)
 
-class ClientServiceDetailView(DetailView):
+
+class ClientServiceDetailView(LoginRequiredMixin, DetailView):
     model = ClientService
 
 
@@ -62,14 +75,14 @@ class ClientServiceCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ClientServiceUpdateView(UpdateView):
+class ClientServiceUpdateView(LoginRequiredMixin, UpdateView):
     model = ClientService
     form_class = ClientServiceForm
     # fields = '__all__'
     success_url = reverse_lazy("mailings:clients")
 
 
-class ClientServiceDeleteView(DeleteView):
+class ClientServiceDeleteView(LoginRequiredMixin, DeleteView):
     model = ClientService
     success_url = reverse_lazy("mailings:clients")
 
@@ -78,11 +91,11 @@ class MessageLetterListView(ListView):
     model = MessageLetter
 
 
-class MessageLetterDetailView(DetailView):
+class MessageLetterDetailView(LoginRequiredMixin, DetailView):
     model = MessageLetter
 
 
-class MessageLetterCreateView(CreateView):
+class MessageLetterCreateView(LoginRequiredMixin, CreateView):
     model = MessageLetter
     # fields = '__all__'
     form_class = MessageLetterForm
@@ -96,14 +109,14 @@ class MessageLetterCreateView(CreateView):
         return super().form_valid(form)
 
 
-class MessageLetterUpdateView(UpdateView):
+class MessageLetterUpdateView(LoginRequiredMixin, UpdateView):
     model = MessageLetter
     form_class = MessageLetterForm
     # fields = '__all__'
     success_url = reverse_lazy("mailings:messages")
 
 
-class MessageLetterDeleteView(DeleteView):
+class MessageLetterDeleteView(LoginRequiredMixin, DeleteView):
     model = MessageLetter
     success_url = reverse_lazy("mailings:messages")
 
