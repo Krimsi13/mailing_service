@@ -12,11 +12,13 @@
             <th>Дата и время первой рассылки</th>
             <th>Периодичность рассылки</th>
             <th>Статус</th>
+            <th>Сообщение</th>
         </tr>
         <tr>
             <td><h4>{{ object.date_time }}</h4></td>
             <td><h4>{{ object.periodicity }}</h4></td>
             <td><h4>{{ object.status }}</h4></td>
+            <td><h4>{{ object.message.body }}</h4></td>
 
         </tr>
     </table>

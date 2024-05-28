@@ -18,6 +18,8 @@
                     <p class="card-text">{{ object.periodicity }}</p>
                     <h6>Статус:</h6>
                     <p class="card-text">{{ object.status }}</p>
+                    <h6>Тема письма:</h6>
+                    <p class="card-text">{{ object.message.title }}</p>
 
                     {% if user.is_authenticated %}
                     <div class="btn-group">
