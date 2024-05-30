@@ -5,12 +5,12 @@ from mailings.views import MailingSettingsListView, MailingSettingsDetailView, M
     MailingSettingsDeleteView, MailingSettingsCreateView, ClientServiceListView, ClientServiceDetailView, \
     ClientServiceCreateView, ClientServiceUpdateView, ClientServiceDeleteView, MessageLetterListView, \
     MessageLetterDetailView, MessageLetterCreateView, MessageLetterUpdateView, MessageLetterDeleteView, \
-    LogsAttemptListView
+    LogsAttemptListView, main_page
 
 app_name = MailingsConfig.name
 
 urlpatterns = [
-    # path('', main_page, name='index'),
+    path('', main_page, name='index'),
 
     path("settings/", MailingSettingsListView.as_view(), name="settings"),
     path("settings/<int:pk>/", MailingSettingsDetailView.as_view(), name="settings_detail"),

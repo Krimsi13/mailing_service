@@ -1,11 +1,32 @@
+from random import sample
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
+from blogs.models import Blog
 from mailings.forms import MailingSettingsForm, ClientServiceForm, MessageLetterForm
 from mailings.models import MailingSettings, ClientService, MessageLetter, LogsAttempt
 
+
+def main_page(request):
+
+    total_messages_count = MessageLetter.objects.count()
+    active_logs_count = LogsAttempt.objects.count()
+    active_clients_count = ClientService.objects.count()
+
+    all_blogs = Blog.objects.all()
+    random_blogs = sample(list(all_blogs), min(3, all_blogs.count()))
+
+    context = {
+        'total_messages_count': total_messages_count,
+        'active_logs_count': active_logs_count,
+        'active_clients_count': active_clients_count,
+        'random_blogs': random_blogs
+    }
+
+    return render(request, 'mailings/main_page.html', context)
 
 class MailingSettingsListView(ListView):
     model = MailingSettings
