@@ -27,7 +27,7 @@
     </div>
 
 <div class="col-12 text-center">
-            {% if perms.blog.add_blog%}
+            {% if perms.blogs.add_blog%}
             <div style="text-align: center">
     <a class="btn btn-outline-primary" href="{% url 'blogs:blog_create' %}">Добавить статью</a>
 </div>

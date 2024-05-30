@@ -12,7 +12,7 @@ class BlogCreateView(PermissionRequiredMixin, CreateView):
 
     form_class = BlogForm
     template_name = "blogs/blog_form.html"
-    permission_required = "blog.add_blog"
+    permission_required = "blogs.add_blog"
     success_url = reverse_lazy("blogs:blog_list")
 
 
@@ -44,7 +44,7 @@ class BlogUpdateView(PermissionRequiredMixin, UpdateView):
 
     form_class = BlogForm
     template_name = "blogs/blog_form.html"
-    permission_required = "blog.change_blog"
+    permission_required = "blogs.change_blog"
 
     def get_success_url(self):
         return reverse("blogs:blog_view", args=[self.kwargs.get("pk")])
@@ -53,6 +53,6 @@ class BlogUpdateView(PermissionRequiredMixin, UpdateView):
 class BlogDeleteView(PermissionRequiredMixin, DeleteView):
     """Класс удаления статьи блога"""
 
-    permission_required = "blog.delete_blog"
+    permission_required = "blogs.delete_blog"
     model = Blog
     success_url = reverse_lazy("blogs:blog_list")

@@ -13,14 +13,15 @@
                     </ul>
                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">Написать комментарий
                     </button>
-                    {% if perms.blog.change_blog and perms.blog.delete_blog %}
+                    {% if perms.blogs.change_blog and perms.blogs.delete_blog %}
                     <a href="{% url 'blogs:blog_edit' object.pk %}" type="button col-4"
                        class="btn btn-lg btn-block btn-outline-primary">Редактировать</a>
                     <a href="{% url 'blogs:blog_delete' object.pk %}" type="button col-4"
                        class="btn btn-lg btn-block btn-outline-danger">Удалить</a>
+                    {% endif %}
                     <a href="{% url 'blogs:blog_list' %}" type="button col-4"
                        class="btn btn-lg btn-block btn-outline-success">Назад</a>
-                    {% endif %}
+
                 </div>
                 <div class="card-footer">
                     Просмотры: {{object.views_count}}
