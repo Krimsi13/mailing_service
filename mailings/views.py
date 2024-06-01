@@ -23,12 +23,17 @@ def main_page(request):
         'total_messages_count': total_messages_count,
         'active_logs_count': active_logs_count,
         'active_clients_count': active_clients_count,
-        'random_blogs': random_blogs
+        'random_blogs': random_blogs,
+        'title': 'Главная'
     }
 
     return render(request, 'mailings/main_page.html', context)
 
+
 class MailingSettingsListView(ListView):
+    extra_context = {
+        'title': 'Рассылки'
+    }
     model = MailingSettings
 
 
@@ -68,6 +73,9 @@ class MailingSettingsDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class ClientServiceListView(ListView):
+    extra_context = {
+        'title': 'Клиенты'
+    }
     model = ClientService
 
     # на вкладке клиенты отображаются клиенты только пользователя(пока выключил)
@@ -109,6 +117,9 @@ class ClientServiceDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class MessageLetterListView(ListView):
+    extra_context = {
+        'title': 'Сообщения'
+    }
     model = MessageLetter
 
 
@@ -143,4 +154,7 @@ class MessageLetterDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class LogsAttemptListView(ListView):
+    extra_context = {
+        'title': 'Журнал рассылок'
+    }
     model = LogsAttempt
