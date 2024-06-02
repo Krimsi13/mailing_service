@@ -68,6 +68,9 @@ class MailingSettings(models.Model):
     class Meta:
         verbose_name = "Настройка рассылки"
         verbose_name_plural = "Настройки рассылки"
+        permissions = (
+            ("set_settings_deactivate", "Can deactivate settings"),
+        )
         ordering = ('date_time',)
 
 

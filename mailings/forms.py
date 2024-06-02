@@ -7,11 +7,14 @@ from mailings.models import ClientService, MessageLetter, MailingSettings
 class StyleFormMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # for field_name, field in self.fields.items():
+        #     if isinstance(field, BooleanField):
+        #         field.widget.attrs['class'] = 'form-check-input'
+        #     else:
+        #         field.widget.attrs['class'] = 'form-control'
         for field_name, field in self.fields.items():
-            if isinstance(field, BooleanField):
-                field.widget.attrs['class'] = 'form-check-input'
-            else:
-                field.widget.attrs['class'] = 'form-control'
+            if field_name != 'is_active':
+                field.widget.attrs["class"] = "form-control"
 
 
 class ClientServiceForm(StyleFormMixin, forms.ModelForm):
@@ -69,3 +72,9 @@ class MailingSettingsForm(StyleFormMixin, forms.ModelForm):
         model = MailingSettings
         fields = "__all__"
         exclude = ["owner"]
+
+
+class MailingSettingsManagerForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = MailingSettings
+        fields = ("status",)
