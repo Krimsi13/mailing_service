@@ -22,7 +22,9 @@
                         <li>Количество проведенных активных рассылок: {{ active_logs_count }}</li>
                         <li>Общее количество активных клиентов: {{ active_clients_count }}</li>
                     </ul>
+                    {% if user.is_authenticated %}
                     <a class="w-100 btn btn-lg btn-success" href="{% url 'mailings:messages' %}">Просмотреть рассылки</a>
+                    {% endif %}
                 </div>
             </div>
 
