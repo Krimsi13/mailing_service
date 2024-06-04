@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from mailings.models import ClientService, MessageLetter, MailingSettings, LogsAttempt
+from mailings.models import ClientService, Message, MailingSettings, LogsAttempt
 
 
 @admin.register(ClientService)
@@ -8,8 +8,8 @@ class ClientServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'surname', 'email',)
 
 
-@admin.register(MessageLetter)
-class MessageLetterAdmin(admin.ModelAdmin):
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
     list_display = ('title', 'body',)
 
 

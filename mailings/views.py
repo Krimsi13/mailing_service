@@ -7,13 +7,13 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
 from blogs.models import Blog
-from mailings.forms import MailingSettingsForm, ClientServiceForm, MessageLetterForm, MailingSettingsManagerForm
-from mailings.models import MailingSettings, ClientService, MessageLetter, LogsAttempt
+from mailings.forms import MailingSettingsForm, ClientServiceForm, MessageForm, MailingSettingsManagerForm
+from mailings.models import MailingSettings, ClientService, Message, LogsAttempt
 
 
 def main_page(request):
 
-    total_messages_count = MessageLetter.objects.count()
+    total_messages_count = Message.objects.count()
     active_logs_count = LogsAttempt.objects.count()
     active_clients_count = ClientService.objects.count()
 
@@ -125,21 +125,21 @@ class ClientServiceDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("mailings:clients")
 
 
-class MessageLetterListView(ListView):
+class MessageListView(ListView):
     extra_context = {
         'title': 'Сообщения'
     }
-    model = MessageLetter
+    model = Message
 
 
-class MessageLetterDetailView(LoginRequiredMixin, DetailView):
-    model = MessageLetter
+class MessageDetailView(LoginRequiredMixin, DetailView):
+    model = Message
 
 
-class MessageLetterCreateView(LoginRequiredMixin, CreateView):
-    model = MessageLetter
+class MessageCreateView(LoginRequiredMixin, CreateView):
+    model = Message
     # fields = '__all__'
-    form_class = MessageLetterForm
+    form_class = MessageForm
     success_url = reverse_lazy("mailings:messages")
 
     def form_valid(self, form):
@@ -150,15 +150,15 @@ class MessageLetterCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class MessageLetterUpdateView(LoginRequiredMixin, UpdateView):
-    model = MessageLetter
-    form_class = MessageLetterForm
+class MessageUpdateView(LoginRequiredMixin, UpdateView):
+    model = Message
+    form_class = MessageForm
     # fields = '__all__'
     success_url = reverse_lazy("mailings:messages")
 
 
-class MessageLetterDeleteView(LoginRequiredMixin, DeleteView):
-    model = MessageLetter
+class MessageDeleteView(LoginRequiredMixin, DeleteView):
+    model = Message
     success_url = reverse_lazy("mailings:messages")
 
 

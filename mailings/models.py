@@ -24,7 +24,7 @@ class ClientService(models.Model):
         ordering = ('surname',)
 
 
-class MessageLetter(models.Model):
+class Message(models.Model):
     title = models.CharField(max_length=100, verbose_name="Тема письма")
     body = models.TextField(verbose_name="Тело письма", **NULLABLE)
 
@@ -58,7 +58,7 @@ class MailingSettings(models.Model):
     status = models.CharField(verbose_name="Статус рассылки", max_length=20, choices=STATUS_CHOICES, default='Создана')
 
     clients = models.ManyToManyField(ClientService, verbose_name="Клиент")
-    message = models.ForeignKey(MessageLetter, on_delete=models.CASCADE, verbose_name='Сообщение')
+    message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Сообщение')
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Владелец рассылки", **NULLABLE)
 

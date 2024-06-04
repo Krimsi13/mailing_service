@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import BooleanField
 
-from mailings.models import ClientService, MessageLetter, MailingSettings
+from mailings.models import ClientService, Message, MailingSettings
 
 
 class StyleFormMixin:
@@ -20,19 +20,17 @@ class StyleFormMixin:
 class ClientServiceForm(StyleFormMixin, forms.ModelForm):
     """Класс формы клиента"""
 
-
-
     class Meta:
         model = ClientService
         # fields = "__all__"
         exclude = ["owner"]
 
 
-class MessageLetterForm(StyleFormMixin, forms.ModelForm):
+class MessageForm(StyleFormMixin, forms.ModelForm):
     """Класс формы сообщения"""
 
     class Meta:
-        model = MessageLetter
+        model = Message
         # fields = "__all__"
         exclude = ["owner"]
         widgets = {
@@ -66,7 +64,7 @@ class MailingSettingsForm(StyleFormMixin, forms.ModelForm):
         # Фильтруем поле clients только для тех клиентов, которые принадлежат текущему пользователю
         if self.request and self.request.user:
             self.fields['clients'].queryset = ClientService.objects.filter(owner=self.request.user)
-            self.fields['message'].queryset = MessageLetter.objects.filter(owner=self.request.user)
+            self.fields['message'].queryset = Message.objects.filter(owner=self.request.user)
 
     class Meta:
         model = MailingSettings

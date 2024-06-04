@@ -1,0 +1,82 @@
+[
+  {
+    "model": "mailings.clientservice",
+    "pk": 1,
+    "fields": {
+      "email": "alekslist@mail.ru",
+      "name": "Алексей",
+      "patronymic": "Вадимович",
+      "surname": "Листратов",
+      "comment": ")",
+      "owner": 3
+    }
+  },
+  {
+    "model": "mailings.clientservice",
+    "pk": 2,
+    "fields": {
+      "email": "shustsasha@rambler.com",
+      "name": "Андрей",
+      "patronymic": "Олегович",
+      "surname": "Шустов",
+      "comment": "!",
+      "owner": 2
+    }
+  },
+  {
+    "model": "mailings.message",
+    "pk": 1,
+    "fields": {
+      "title": "Интернет",
+      "body": "Поздравляем! Вы получаете скидку на интернет в течении трёх следующих месяцев!",
+      "owner": 3
+    }
+  },
+  {
+    "model": "mailings.message",
+    "pk": 2,
+    "fields": {
+      "title": "Работа!",
+      "body": "Есть следующие вакансии: слесарь, фрезеровщик, питонист",
+      "owner": 2
+    }
+  },
+  {
+    "model": "mailings.mailingsettings",
+    "pk": 1,
+    "fields": {
+      "date_time": "2024-06-04T20:34:44.471Z",
+      "periodicity": "Раз в день",
+      "status": "Создана",
+      "message": 1,
+      "owner": 3,
+      "clients": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "mailings.mailingsettings",
+    "pk": 2,
+    "fields": {
+      "date_time": "2024-06-11T20:43:48.822Z",
+      "periodicity": "Раз в неделю",
+      "status": "Запущена",
+      "message": 2,
+      "owner": 2,
+      "clients": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "mailings.logsattempt",
+    "pk": 1,
+    "fields": {
+      "last_attempt": "2024-06-04",
+      "status": "Отправлено",
+      "response_mail": "Успешно",
+      "mailing_settings": 2
+    }
+  }
+]

@@ -4,8 +4,8 @@ from django.views.decorators.cache import cache_page
 from mailings.apps import MailingsConfig
 from mailings.views import MailingSettingsListView, MailingSettingsDetailView, MailingSettingsUpdateView, \
     MailingSettingsDeleteView, MailingSettingsCreateView, ClientServiceListView, ClientServiceDetailView, \
-    ClientServiceCreateView, ClientServiceUpdateView, ClientServiceDeleteView, MessageLetterListView, \
-    MessageLetterDetailView, MessageLetterCreateView, MessageLetterUpdateView, MessageLetterDeleteView, \
+    ClientServiceCreateView, ClientServiceUpdateView, ClientServiceDeleteView, MessageListView, \
+    MessageDetailView, MessageCreateView, MessageUpdateView, MessageDeleteView, \
     LogsAttemptListView, main_page
 
 app_name = MailingsConfig.name
@@ -25,11 +25,11 @@ urlpatterns = [
     path("clients/<int:pk>/update/", ClientServiceUpdateView.as_view(), name="clients_update"),
     path("clients/<int:pk>/delete/", ClientServiceDeleteView.as_view(), name="clients_delete"),
 
-    path("messages/", MessageLetterListView.as_view(), name="messages"),
-    path("messages/<int:pk>/", MessageLetterDetailView.as_view(), name="messages_detail"),
-    path("messages/create/", MessageLetterCreateView.as_view(), name="messages_create"),
-    path("messages/<int:pk>/update/", MessageLetterUpdateView.as_view(), name="messages_update"),
-    path("messages/<int:pk>/delete/", MessageLetterDeleteView.as_view(), name="messages_delete"),
+    path("messages/", MessageListView.as_view(), name="messages"),
+    path("messages/<int:pk>/", MessageDetailView.as_view(), name="messages_detail"),
+    path("messages/create/", MessageCreateView.as_view(), name="messages_create"),
+    path("messages/<int:pk>/update/", MessageUpdateView.as_view(), name="messages_update"),
+    path("messages/<int:pk>/delete/", MessageDeleteView.as_view(), name="messages_delete"),
 
     path("logs/", LogsAttemptListView.as_view(), name="logs"),
 ]

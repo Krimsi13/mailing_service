@@ -1,0 +1,50 @@
+[
+  {
+    "model": "blogs.blog",
+    "pk": 1,
+    "fields": {
+      "title": "НЛО",
+      "content": "На фермерских полях обнаружены круги, фермеры утверждают это НЛО!",
+      "image": "blogs/NLO.jpg",
+      "views_count": 0,
+      "created_at": "2024-06-04",
+      "is_published": true
+    }
+  },
+  {
+    "model": "blogs.blog",
+    "pk": 2,
+    "fields": {
+      "title": "НЛО2",
+      "content": "Один из фермеров утверждает, что его похищали инопланетяне на неделю и ставили над ним опыты!",
+      "image": "",
+      "views_count": 0,
+      "created_at": "2024-06-04",
+      "is_published": true
+    }
+  },
+  {
+    "model": "blogs.blog",
+    "pk": 3,
+    "fields": {
+      "title": "ЛВЧ",
+      "content": "Рядом с фермой были замечены Люди В Чёрном!",
+      "image": "",
+      "views_count": 0,
+      "created_at": "2024-06-04",
+      "is_published": true
+    }
+  },
+  {
+    "model": "blogs.blog",
+    "pk": 4,
+    "fields": {
+      "title": "Марсиане!",
+      "content": "Гости фермы утверждают, что на фермы были не просто инопланетяне, а именно Марсиане!",
+      "image": "",
+      "views_count": 0,
+      "created_at": "2024-06-04",
+      "is_published": true
+    }
+  }
+]
